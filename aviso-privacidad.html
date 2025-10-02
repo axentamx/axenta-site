@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aviso de privacidad – Axenta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Inter, system-ui;background:#F4F1FB;color:#0F0F14}
+    .wrap{max-width:900px;margin:0 auto;padding:28px}
+    h1{color:#2A0D4F}
+    .card{background:#fff;border:1px solid rgba(78,30,138,.12);border-radius:16px;padding:20px}
+    a{color:#4E1E8A;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="index.html">← Volver</a>
+    <h1>Aviso de privacidad</h1>
+    <div class="card">
+      <p>Axenta es responsable del tratamiento de los datos personales recabados a través de este sitio. Los utilizamos para dar seguimiento a solicitudes de información, preparar propuestas y prestar servicios contables y fiscales.</p>
+      <p>Podrá ejercer sus derechos ARCO enviando un correo a <a href="mailto:finanzas@axentaexpert.com">finanzas@axentaexpert.com</a>. No transferimos sus datos sin su consentimiento, salvo las excepciones previstas en la ley.</p>
+      <p>Última actualización: <span id="date"></span>.</p>
+    </div>
+  </div>
+  <script>document.getElementById('date').textContent=new Date().toLocaleDateString('es-MX');</script>
+</body>
+</html>

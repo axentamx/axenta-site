@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Axenta – Contabilidad y Asesoría Fiscal</title>
+  <meta name="description" content="Axenta: despacho contable moderno que simplifica lo complejo: contabilidad, fiscal y asesoría para pymes y profesionales." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --axenta-900:#2A0D4F;
+      --axenta-700:#4E1E8A;
+      --axenta-500:#6E34C5;
+      --axenta-300:#B49BE6;
+      --axenta-100:#F4F1FB;
+      --ink-900:#0F0F14;
+      --ink-600:#4A4A57;
+      --white:#FFFFFF;
+      --radius-xl: 20px;
+      --shadow-sm:0 8px 24px rgba(46,16,101,.08);
+      --shadow-md:0 12px 32px rgba(46,16,101,.14);
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans';
+      color:var(--ink-900);
+      background: radial-gradient(1200px 600px at 85% -10%, rgba(110,52,197,.15), transparent 60%),
+                 radial-gradient(1400px 800px at -10% 20%, rgba(78,30,138,.10), transparent 60%),
+                 var(--axenta-100);
+    }
+    .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.2) blur(10px);
+      background:rgba(255,255,255,.65);border-bottom:1px solid rgba(78,30,138,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--axenta-900)}
+    .brand img{height:36px;width:auto}
+    .brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.3px}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--ink-600);text-decoration:none;font-weight:600;padding:10px 12px;border-radius:12px}
+    nav a:hover{color:var(--axenta-700);background:rgba(110,52,197,.08)}
+    .cta{background:var(--axenta-700);color:var(--white)!important;border-radius:14px;padding:10px 16px;box-shadow:var(--shadow-sm)}
+    .cta:hover{background:var(--axenta-900)}
+    .hero{padding:96px 0 56px}
+    .hero .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}
+    .badge{display:inline-flex;gap:8px;align-items:center;color:var(--axenta-700);background:rgba(110,52,197,.10);padding:8px 12px;border-radius:999px;font-weight:600;font-size:14px}
+    .title{font-size:44px;line-height:1.05;margin:16px 0 14px;color:var(--axenta-900)}
+    .subtitle{font-size:18px;line-height:1.6;color:var(--ink-600)}
+    .hero-card{background:linear-gradient(145deg, #fff, rgba(255,255,255,.75));padding:28px;border-radius:var(--radius-xl);box-shadow:var(--shadow-md);border:1px solid rgba(78,30,138,.12)}
+    .hero-art{position:relative;aspect-ratio:1.1/1;background: radial-gradient(80% 60% at 50% 40%, rgba(110,52,197,.12), transparent 70%),
+      linear-gradient(180deg, rgba(180,155,230,.25), rgba(78,30,138,.20));
+      border-radius:28px;border:1px solid rgba(78,30,138,.18);box-shadow:var(--shadow-md)}
+    .hero-art:after{content:"";position:absolute;inset:18px;border-radius:22px;border:1px dashed rgba(110,52,197,.35)}
+    section{padding:72px 0}
+    h2{font-size:32px;margin:0 0 10px;color:var(--axenta-900)}
+    .lead{color:var(--ink-600);margin:0 0 28px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{background:#fff;border:1px solid rgba(78,30,138,.12);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm)}
+    .card h3{margin:8px 0 8px;font-size:20px;color:var(--axenta-700)}
+    .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(110,52,197,.12);color:var(--axenta-700)}
+    .check{display:flex;gap:10px;align-items:flex-start;margin:10px 0;color:var(--ink-600)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .pill{display:inline-block;background:rgba(110,52,197,.10);color:var(--axenta-700);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px;margin-bottom:10px}
+    form{display:grid;gap:14px}
+    label{font-weight:600;color:var(--ink-600)}
+    input, textarea{border:1px solid rgba(78,30,138,.18);border-radius:14px;padding:12px 14px;background:#fff;font:inherit}
+    textarea{min-height:130px;resize:vertical}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .btn{cursor:pointer;border:none;background:var(--axenta-700);color:#fff;padding:12px 16px;border-radius:14px;font-weight:700;box-shadow:var(--shadow-sm)}
+    .btn:hover{background:var(--axenta-900)}
+    .notice{font-size:13px;color:var(--ink-600)}
+    footer{padding:28px 0;border-top:1px solid rgba(78,30,138,.12);background:rgba(255,255,255,.7)}
+    .foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+    .foot small{color:var(--ink-600)}
+    @media (max-width: 960px){.hero .grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.about-grid{grid-template-columns:1fr}}
+    @media (max-width: 640px){.title{font-size:34px}nav ul{display:none}.cards{grid-template-columns:1fr}}
+    .social a{margin-right:12px;color:var(--ink-600);text-decoration:none;font-weight:600}
+    .social a:hover{color:var(--axenta-700)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio" aria-label="Axenta">
+        <img src="assets/axenta-logo.png" alt="Logotipo Axenta" onerror="this.style.display='none'">
+        <h1>AXENTA</h1>
+      </a>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#sobre">Sobre nosotros</a></li>
+          <li><a class="cta" href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <span class="badge">Contabilidad clara • Fiscal sin estrés</span>
+          <h2 class="title">Contabilidad y asesoría fiscal <span style="color:var(--axenta-700)">con lenguaje simple</span>.</h2>
+          <p class="subtitle">Somos un despacho joven y profesional. Traducimos lo complejo en pasos claros para que tomes decisiones con confianza.</p>
+          <div class="hero-card" role="note">
+            <div class="check"><span class="icon" aria-hidden>✓</span><div><strong>Contabilidad integral</strong><br/>Desde la captura hasta reportes y estados financieros.</div></div>
+            <div class="check"><span class="icon" aria-hidden>✓</span><div><strong>Estrategia fiscal</strong><br/>Cumplimiento y optimización con enfoque preventivo.</div></div>
+            <div class="check"><span class="icon" aria-hidden>✓</span><div><strong>Acompañamiento cercano</strong><br/>Hablamos claro, sin tecnicismos innecesarios.</div></div>
+          </div>
+          <p style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="cta" href="#contacto">Solicitar información</a>
+            <a class="cta" style="background:transparent;border:1px solid var(--axenta-700);color:var(--axenta-700)" href="cotiza.html">Cotiza en 15 minutos</a>
+          </p>
+        </div>
+        <div class="hero-art" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
+
+  <section id="servicios">
+    <div class="wrap">
+      <h2>Servicios</h2>
+      <p class="lead">Soluciones diseñadas para pymes, profesionales y emprendimientos.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="icon" aria-hidden>📊</div>
+          <h3>Contabilidad</h3>
+          <p>Registro y conciliaciones, nómina, estados financieros y reportes para la toma de decisiones.</p>
+          <ul>
+            <li>Estados de resultados y balance</li>
+            <li>Control de facturación e inventarios</li>
+            <li>Implementación de procesos</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden>🧾</div>
+          <h3>Fiscal</h3>
+          <p>Cumplimiento ante SAT e IMSS, declaraciones, revisiones preventivas y planeación responsable.</p>
+          <ul>
+            <li>Declaraciones mensuales y anuales</li>
+            <li>IMSS, INFONAVIT, SUA</li>
+            <li>Atención a requerimientos</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden>🤝</div>
+          <h3>Asesoría</h3>
+          <p>Acompañamiento estratégico y capacitación para equipos administrativos y emprendedores.</p>
+          <ul>
+            <li>Diagnóstico y puesta a punto</li>
+            <li>Automatización de procesos</li>
+            <li>Capacitación 1:1 o por equipos</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="wrap">
+      <h2>Sobre nosotros</h2>
+      <p class="lead">Serios con los números, cercanos con las personas.</p>
+      <div class="about-grid">
+        <article class="card">
+          <span class="pill">Misión</span>
+          <p>Facilitar la contabilidad y el cumplimiento fiscal de nuestros clientes mediante asesoría clara, procesos modernos y un trato humano, para que se enfoquen en crecer su negocio.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Visión</span>
+          <p>Consolidarnos como el despacho contable de referencia para pymes y profesionales que buscan claridad, tecnología y confianza en México.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Valores</span>
+          <ul>
+            <li><strong>Claridad:</strong> comunicamos en lenguaje simple.</li>
+            <li><strong>Confianza:</strong> ética y confidencialidad en todo momento.</li>
+            <li><strong>Excelencia:</strong> procesos rigurosos y mejora continua.</li>
+            <li><strong>Cercanía:</strong> acompañamiento proactivo y humano.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="pill">Datos de contacto</span>
+          <p><strong>Correo:</strong> <a href="mailto:finanzas@axentaexpert.com">finanzas@axentaexpert.com</a><br/>
+          <strong>Ubicación:</strong> CDMX (atención remota a todo México)</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+      <h2>Contacto</h2>
+      <p class="lead">Cuéntenos sobre su situación y con gusto preparamos una propuesta.</p>
+      <div class="card">
+        <form id="contactForm">
+          <div class="form-row">
+            <div>
+              <label for="name">Nombre</label>
+              <input id="name" name="Nombre" placeholder="Nombre completo" required />
+            </div>
+            <div>
+              <label for="email">Correo</label>
+              <input id="email" name="Correo" type="email" placeholder="correo@empresa.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="company">Empresa (opcional)</label>
+              <input id="company" name="Empresa" placeholder="Su empresa" />
+            </div>
+            <div>
+              <label for="service">Interés principal</label>
+              <input id="service" name="Servicio" placeholder="Contabilidad / Fiscal / Asesoría" />
+            </div>
+          </div>
+          <div>
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="Mensaje" placeholder="Describa brevemente su necesidad" required></textarea>
+          </div>
+          <button class="btn" type="submit">Enviar</button>
+          <p class="notice">El formulario utiliza Formspree si se configura, de lo contrario abrirá su correo con un borrador a finanzas@axentaexpert.com.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="assets/axenta-logo.png" alt="Logotipo Axenta" style="height:24px" onerror="this.style.display='none'">
+        <small>© <span id="year"></span> Axenta. Todos los derechos reservados.</small>
+      </div>
+      <div class="social">
+        <a href="aviso-privacidad.html">Aviso de privacidad</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/config.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const cfg = (window.AXENTA_CONFIG || {});
+    const form = document.getElementById('contactForm');
+
+    function toMailto(fields){
+      const params = new URLSearchParams(fields).toString().replace(/&/g, '%0A');
+      window.location.href = `mailto:${cfg.contactEmail || 'finanzas@axentaexpert.com'}?subject=Nuevo contacto desde sitio Axenta&body=${params}`;
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const data = {
+        Nombre: form.Nombre.value,
+        Correo: form.Correo.value,
+        Empresa: form.Empresa.value,
+        Servicio: form.Servicio.value,
+        Mensaje: form.Mensaje.value
+      };
+      if (cfg.formspreeEndpoint){
+        try{
+          const res = await fetch(cfg.formspreeEndpoint, {
+            method:'POST',
+            headers:{'Accept':'application/json','Content-Type':'application/json'},
+            body: JSON.stringify(data)
+          });
+          if (res.ok){
+            alert('¡Gracias! Hemos recibido su mensaje.');
+            form.reset();
+            return;
+          }
+        }catch(err){/* fallback */}
+      }
+      toMailto(data);
+    });
+  </script>
+</body>
+</html>

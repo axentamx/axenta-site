@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotiza en 15 minutos – Axenta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--axenta-900:#2A0D4F;--axenta-700:#4E1E8A;--axenta-100:#F4F1FB;--ink-900:#0F0F14;--ink-600:#4A4A57;--shadow-sm:0 8px 24px rgba(46,16,101,.08)}
+    body{margin:0;font-family:Inter, system-ui; background:var(--axenta-100); color:var(--ink-900)}
+    .wrap{max-width:900px;margin:0 auto;padding:24px}
+    .card{background:#fff;border:1px solid rgba(78,30,138,.12);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm)}
+    h1{color:var(--axenta-900);font-size:30px;margin:8px 0 16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-weight:600;color:var(--ink-600)}
+    input, select, textarea{border:1px solid rgba(78,30,138,.18);border-radius:12px;padding:10px 12px;background:#fff;font:inherit}
+    textarea{min-height:110px}
+    .btn{cursor:pointer;border:none;background:var(--axenta-700);color:#fff;padding:12px 16px;border-radius:12px;font-weight:700}
+    @media (max-width:700px){.grid{grid-template-columns:1fr}}
+    a{color:var(--axenta-700);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="index.html">← Volver</a>
+    <header style="display:flex;align-items:center;gap:10px;margin:10px 0 6px">
+      <img src="assets/axenta-logo.png" alt="Axenta" style="height:30px">
+      <h1>Cotiza en 15 minutos</h1>
+    </header>
+    <p>Compártenos algunos datos y te respondemos con una estimación inicial.</p>
+    <div class="card">
+      <form id="quoteForm">
+        <div class="grid">
+          <div>
+            <label for="qName">Nombre</label>
+            <input id="qName" required />
+          </div>
+          <div>
+            <label for="qEmail">Correo</label>
+            <input id="qEmail" type="email" required />
+          </div>
+          <div>
+            <label for="qRegimen">Régimen fiscal</label>
+            <select id="qRegimen">
+              <option value="RIF/RESICO">RIF / RESICO</option>
+              <option value="Asalariado">Asalariado</option>
+              <option value="Personas Físicas con Actividad">PF con Actividad</option>
+              <option value="Persona Moral">Persona Moral</option>
+            </select>
+          </div>
+          <div>
+            <label for="qFolios">CFDI emitidos al mes (aprox.)</label>
+            <input id="qFolios" type="number" min="0" value="10" />
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <label for="qNotes">Notas</label>
+          <textarea id="qNotes" placeholder="Cuéntanos si manejas nómina, inventarios, IMSS, etc."></textarea>
+        </div>
+        <button class="btn" type="submit">Obtener estimación</button>
+      </form>
+    </div>
+    <div id="quoteResult" style="margin-top:16px"></div>
+  </div>
+  <script src="assets/config.js"></script>
+  <script>
+    const cfg = (window.AXENTA_CONFIG || {});
+    const form = document.getElementById('quoteForm');
+    const out = document.getElementById('quoteResult');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const folios = Number(document.getElementById('qFolios').value||0);
+      const regimen = document.getElementById('qRegimen').value;
+      // Estimación simple basada en folios y régimen
+      let base = 1200;
+      if(regimen==='Persona Moral') base = 3500;
+      else if(regimen==='PF con Actividad') base = 1800;
+      else if(regimen==='RIF/RESICO') base = 1300;
+      else if(regimen==='Asalariado') base = 900;
+      const variable = Math.max(0, folios-20) * 10;
+      const estimacion = Math.round((base + variable)/50)*50;
+      out.innerHTML = `<div class="card"><h3 style="margin:0 0 8px">Estimación mensual inicial</h3>
+      <p style="margin:0 0 6px"><strong>$${estimacion} MXN</strong> (más IVA)</p>
+      <p style="margin:6px 0 0;color:#4A4A57;font-size:14px">*Cálculo aproximado. La cotización final se confirma tras revisar documentación.</p></div>`;
+      // opcional: enviar por Formspree si está configurado
+      if (cfg.formspreeEndpoint){
+        fetch(cfg.formspreeEndpoint, {
+          method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'},
+          body: JSON.stringify({
+            Tipo:'Cotización',
+            Nombre: document.getElementById('qName').value,
+            Correo: document.getElementById('qEmail').value,
+            Regimen: regimen, Folios: folios, Notas: document.getElementById('qNotes').value,
+            Estimacion: estimacion
+          })
+        }).catch(()=>{});
+      }
+    });
+  </script>
+</body>
+</html>
